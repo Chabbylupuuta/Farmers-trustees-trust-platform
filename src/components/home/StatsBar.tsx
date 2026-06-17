@@ -11,6 +11,12 @@ const stats = [
 
 export default function StatsBar() {
   const [isVisible, setIsVisible] = useState(false)
+  const [displayValues, setDisplayValues] = useState<string[]>(
+    stats.map((stat) => {
+      const numeric = parseInt(stat.value, 10)
+      return Number.isFinite(numeric) ? `${numeric === 100 ? 0 : 0}${stat.value.replace(/[0-9]/g, '')}` : stat.value
+    })
+  )
   const ref = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
@@ -31,34 +37,47 @@ export default function StatsBar() {
     return () => observer.disconnect()
   }, [])
 
+  useEffect(() => {
+    if (!isVisible) return
+
+    const targets = stats.map((stat) => {
+      const numeric = parseInt(stat.value, 10)
+      const suffix = stat.value.replace(/[0-9]/g, '')
+      return Number.isFinite(numeric) ? { numeric, suffix } : null
+    })
+
+    const duration = 1100
+    const start = performance.now()
+    let rafId: number
+
+    const tick = (time: number) => {
+      const progress = Math.min((time - start) / duration, 1)
+      setDisplayValues(
+        targets.map((target, idx) => {
+          if (!target) return stats[idx].value
+          const current = Math.round(target.numeric * progress)
+          return `${current}${target.suffix}`
+        })
+      )
+
+      if (progress < 1) {
+        rafId = requestAnimationFrame(tick)
+      }
+    }
+
+    rafId = requestAnimationFrame(tick)
+    return () => cancelAnimationFrame(rafId)
+  }, [isVisible])
+
   return (
-    <div
-      ref={ref}
-      style={{
-        background: '#fff',
-        borderBottom: '0.5px solid var(--border)',
-        overflowX: 'auto',
-      }}
-    >
-      <div
-        style={{
-          maxWidth: 1200,
-          margin: '0 auto',
-          display: 'flex',
-          justifyContent: 'center',
-        }}
-      >
+    <div ref={ref} className="stats-bar">
+      <div className="stats-grid">
         {stats.map((stat, i) => (
           <div
             key={i}
+            className={`stats-cell reveal ${isVisible ? 'show' : ''} delay-${Math.min(i + 1, 6)}`}
             style={{
-              padding: '1.25rem 2.5rem',
-              textAlign: 'center',
-              borderRight: i < stats.length - 1 ? '0.5px solid var(--border)' : 'none',
-              minWidth: 140,
-              flexShrink: 0,
-              animation: isVisible ? `slideInUp 0.6s ease-out ${0.1 * i}s forwards` : 'none',
-              opacity: 0,
+              animationDelay: `${0.1 * i}s`,
             }}
           >
             <div
@@ -76,7 +95,7 @@ export default function StatsBar() {
                 e.currentTarget.style.color = 'var(--green-700)'
               }}
             >
-              {stat.value}
+              {displayValues[i]}
             </div>
             <div
               style={{

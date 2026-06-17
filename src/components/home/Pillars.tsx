@@ -1,6 +1,7 @@
 "use client"
 
 import Link from 'next/link'
+import { useEffect, useRef, useState } from 'react'
 
 const pillars = [
   {
@@ -54,8 +55,26 @@ const pillars = [
 ]
 
 export default function Pillars() {
+  const ref = useRef<HTMLElement | null>(null)
+  const [visible, setVisible] = useState(false)
+
+  useEffect(() => {
+    if (!ref.current) return
+    const obs = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setVisible(true)
+          obs.disconnect()
+        }
+      },
+      { threshold: 0.15 }
+    )
+    obs.observe(ref.current)
+    return () => obs.disconnect()
+  }, [])
+
   return (
-    <section style={{ background: '#fff', padding: '4rem 1.5rem' }}>
+    <section ref={ref} style={{ background: '#fff', padding: '4rem 1.5rem' }}>
       <div style={{ maxWidth: 1100, margin: '0 auto' }}>
 
         {/* Section header */}
@@ -102,20 +121,20 @@ export default function Pillars() {
           {pillars.map((pillar, idx) => (
             <div
               key={pillar.href}
+              className={`reveal ${visible ? 'show' : ''} ${'delay-' + ((idx % 6) + 1)}`}
               style={{
                 background: '#fff',
                 border: '0.5px solid var(--border)',
                 borderRadius: 14,
                 padding: '1.75rem',
-                transition: 'all 0.3s ease',
-                animation: `slideInUp 0.6s ease-out ${0.1 * (idx + 1)}s forwards`,
-                opacity: 0,
+                transition: 'all 0.28s ease',
+                willChange: 'transform, box-shadow',
               }}
               onMouseEnter={(e) => {
                 const el = e.currentTarget as HTMLElement
                 el.style.borderColor = 'var(--green-700)'
-                el.style.boxShadow = '0 12px 32px rgba(31,92,59,0.15)'
-                el.style.transform = 'translateY(-8px)'
+                el.style.boxShadow = '0 12px 32px rgba(31,92,59,0.12)'
+                el.style.transform = 'translateY(-6px)'
               }}
               onMouseLeave={(e) => {
                 const el = e.currentTarget as HTMLElement

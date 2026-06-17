@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import Link from 'next/link'
+import { usePathname } from 'next/navigation'
 
 const navLinks = [
   { label: 'About', href: '/about' },
@@ -15,6 +16,8 @@ const navLinks = [
 
 export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false)
+
+  const pathname = usePathname()
 
   return (
     <header style={{ background: 'var(--green-700)', position: 'sticky', top: 0, zIndex: 50, boxShadow: '0 2px 8px rgba(0,0,0,0.1)', transition: 'all 0.3s ease' }}>
@@ -72,30 +75,34 @@ export default function Navbar() {
           style={{ display: 'flex', alignItems: 'center', gap: '1.25rem' }}
           className="desktop-nav"
         >
-          {navLinks.map((link) => (
-            <Link
-              key={link.href}
-              href={link.href}
-              style={{
-                color: 'rgba(255,255,255,0.82)',
-                fontSize: 13,
-                textDecoration: 'none',
-                transition: 'all 0.3s ease',
-                paddingBottom: 2,
-                borderBottom: '2px solid transparent',
-              }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.color = 'var(--gold-500)'
-                e.currentTarget.style.borderBottom = '2px solid var(--gold-500)'
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.color = 'rgba(255,255,255,0.82)'
-                e.currentTarget.style.borderBottom = '2px solid transparent'
-              }}
-            >
-              {link.label}
-            </Link>
-          ))}
+          {navLinks.map((link) => {
+            const isActive = pathname === link.href
+            return (
+              <Link
+                key={link.href}
+                href={link.href}
+                style={{
+                  color: isActive ? 'var(--gold-500)' : 'rgba(255,255,255,0.82)',
+                  fontSize: 13,
+                  textDecoration: 'none',
+                  transition: 'all 0.3s ease',
+                  paddingBottom: 2,
+                  borderBottom: isActive ? '2px solid var(--gold-500)' : '2px solid transparent',
+                  fontWeight: isActive ? 700 : 500,
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.color = 'var(--gold-500)'
+                  e.currentTarget.style.borderBottom = '2px solid var(--gold-500)'
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.color = isActive ? 'var(--gold-500)' : 'rgba(255,255,255,0.82)'
+                  e.currentTarget.style.borderBottom = isActive ? '2px solid var(--gold-500)' : '2px solid transparent'
+                }}
+              >
+                {link.label}
+              </Link>
+            )
+          })}
 
           <Link href="/membership/register">
             <button
@@ -176,22 +183,25 @@ export default function Navbar() {
           }}
           className="mobile-nav"
         >
-          {navLinks.map((link, idx) => (
-            <Link
-              key={link.href}
-              href={link.href}
-              style={{ 
-                color: 'rgba(255,255,255,0.85)', 
-                fontSize: 15, 
-                textDecoration: 'none',
-                animation: `slideInLeft 0.4s ease-out ${0.05 * idx}s forwards`,
-                opacity: 0,
-              }}
-              onClick={() => setMenuOpen(false)}
-            >
-              {link.label}
-            </Link>
-          ))}
+          {navLinks.map((link, idx) => {
+            const isActive = pathname === link.href
+            return (
+              <Link
+                key={link.href}
+                href={link.href}
+                style={{ 
+                  color: isActive ? 'var(--gold-500)' : 'rgba(255,255,255,0.85)', 
+                  fontSize: 15, 
+                  textDecoration: 'none',
+                  animation: `slideInLeft 0.4s ease-out ${0.05 * idx}s forwards`,
+                  opacity: 0,
+                }}
+                onClick={() => setMenuOpen(false)}
+              >
+                {link.label}
+              </Link>
+            )
+          })}
           <Link href="/membership/register" onClick={() => setMenuOpen(false)}>
             <button
               style={{

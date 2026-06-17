@@ -53,7 +53,7 @@ body {
 @keyframes slideInUp {
   from {
     opacity: 0;
-    transform: translateY(30px);
+    transform: translateY(24px);
   }
   to {
     opacity: 1;
@@ -64,7 +64,7 @@ body {
 @keyframes slideInLeft {
   from {
     opacity: 0;
-    transform: translateX(-30px);
+    transform: translateX(-24px);
   }
   to {
     opacity: 1;
@@ -75,7 +75,7 @@ body {
 @keyframes slideInRight {
   from {
     opacity: 0;
-    transform: translateX(30px);
+    transform: translateX(24px);
   }
   to {
     opacity: 1;
@@ -156,3 +156,76 @@ body {
 .stagger-item:nth-child(3) { animation-delay: 0.3s; }
 .stagger-item:nth-child(4) { animation-delay: 0.4s; }
 .stagger-item:nth-child(5) { animation-delay: 0.5s; }
+
+/* Smooth reveal utility - prefer these over many inline animations */
+:root {
+  --anim-ease: cubic-bezier(.16,.84,.35,1);
+  --anim-duration: 0.6s;
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(12px);
+  will-change: transform, opacity;
+}
+
+.reveal.show {
+  animation: slideInUp var(--anim-duration) var(--anim-ease) forwards;
+}
+
+.reveal-inline-show {
+  animation: fadeIn calc(var(--anim-duration) * 0.9) var(--anim-ease) forwards;
+}
+
+.delay-1 { animation-delay: 0.08s; }
+.delay-2 { animation-delay: 0.16s; }
+.delay-3 { animation-delay: 0.24s; }
+.delay-4 { animation-delay: 0.32s; }
+.delay-5 { animation-delay: 0.40s; }
+.delay-6 { animation-delay: 0.48s; }
+
+.stats-bar {
+  background: #fff;
+  border-bottom: 0.5px solid var(--border);
+  padding: 0.5rem 0;
+}
+
+.stats-grid {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1px;
+  background: rgba(0, 0, 0, 0.04);
+}
+
+.stats-cell {
+  background: #fff;
+  padding: 1rem 1.25rem;
+  text-align: center;
+  min-height: 96px;
+}
+
+@media (max-width: 768px) {
+  .stats-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .stats-cell {
+    padding: 1rem;
+  }
+}
+
+@media (max-width: 520px) {
+  .stats-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .stats-cell {
+    padding: 0.9rem 0.85rem;
+  }
+}
+
+/* gentle hover micro-interactions */
+.lift-on-hover { transition: transform 220ms var(--anim-ease), box-shadow 220ms var(--anim-ease); }
+.lift-on-hover:hover { transform: translateY(-6px); box-shadow: 0 12px 30px rgba(0,0,0,0.12); }
