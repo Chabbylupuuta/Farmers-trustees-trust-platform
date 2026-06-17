@@ -99,7 +99,7 @@ export default function Pillars() {
             gap: 20,
           }}
         >
-          {pillars.map((pillar) => (
+          {pillars.map((pillar, idx) => (
             <div
               key={pillar.href}
               style={{
@@ -107,17 +107,21 @@ export default function Pillars() {
                 border: '0.5px solid var(--border)',
                 borderRadius: 14,
                 padding: '1.75rem',
-                transition: 'border-color 0.2s, box-shadow 0.2s',
+                transition: 'all 0.3s ease',
+                animation: `slideInUp 0.6s ease-out ${0.1 * (idx + 1)}s forwards`,
+                opacity: 0,
               }}
               onMouseEnter={(e) => {
                 const el = e.currentTarget as HTMLElement
                 el.style.borderColor = 'var(--green-700)'
-                el.style.boxShadow = '0 4px 20px rgba(31,92,59,0.08)'
+                el.style.boxShadow = '0 12px 32px rgba(31,92,59,0.15)'
+                el.style.transform = 'translateY(-8px)'
               }}
               onMouseLeave={(e) => {
                 const el = e.currentTarget as HTMLElement
                 el.style.borderColor = 'var(--border)'
                 el.style.boxShadow = 'none'
+                el.style.transform = 'translateY(0)'
               }}
             >
               {/* Icon */}

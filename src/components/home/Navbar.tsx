@@ -17,7 +17,7 @@ export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false)
 
   return (
-    <header style={{ background: 'var(--green-700)', position: 'sticky', top: 0, zIndex: 50 }}>
+    <header style={{ background: 'var(--green-700)', position: 'sticky', top: 0, zIndex: 50, boxShadow: '0 2px 8px rgba(0,0,0,0.1)', transition: 'all 0.3s ease' }}>
       <nav
         style={{
           maxWidth: 1200,
@@ -30,7 +30,7 @@ export default function Navbar() {
         }}
       >
         {/* Logo */}
-        <Link href="/" style={{ display: 'flex', alignItems: 'center', gap: 10, textDecoration: 'none' }}>
+        <Link href="/" style={{ display: 'flex', alignItems: 'center', gap: 10, textDecoration: 'none', transition: 'transform 0.3s ease' }}>
           <div
             style={{
               width: 36,
@@ -41,6 +41,15 @@ export default function Navbar() {
               alignItems: 'center',
               justifyContent: 'center',
               flexShrink: 0,
+              transition: 'all 0.3s ease',
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.transform = 'scale(1.08)'
+              e.currentTarget.style.boxShadow = '0 4px 12px rgba(201, 162, 39, 0.4)'
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.transform = 'scale(1)'
+              e.currentTarget.style.boxShadow = 'none'
             }}
           >
             {/* Leaf icon SVG */}
@@ -71,10 +80,18 @@ export default function Navbar() {
                 color: 'rgba(255,255,255,0.82)',
                 fontSize: 13,
                 textDecoration: 'none',
-                transition: 'color 0.15s',
+                transition: 'all 0.3s ease',
+                paddingBottom: 2,
+                borderBottom: '2px solid transparent',
               }}
-              onMouseEnter={(e) => ((e.target as HTMLElement).style.color = 'var(--gold-500)')}
-              onMouseLeave={(e) => ((e.target as HTMLElement).style.color = 'rgba(255,255,255,0.82)')}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.color = 'var(--gold-500)'
+                e.currentTarget.style.borderBottom = '2px solid var(--gold-500)'
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.color = 'rgba(255,255,255,0.82)'
+                e.currentTarget.style.borderBottom = '2px solid transparent'
+              }}
             >
               {link.label}
             </Link>
@@ -86,12 +103,21 @@ export default function Navbar() {
                 background: 'var(--gold-500)',
                 color: '#1F3A22',
                 fontSize: 13,
-                fontWeight: 500,
+                fontWeight: 600,
                 padding: '8px 18px',
                 borderRadius: 7,
                 border: 'none',
                 cursor: 'pointer',
                 whiteSpace: 'nowrap',
+                transition: 'all 0.3s ease',
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.transform = 'translateY(-2px)'
+                e.currentTarget.style.boxShadow = '0 6px 16px rgba(201, 162, 39, 0.4)'
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.transform = 'translateY(0)'
+                e.currentTarget.style.boxShadow = 'none'
               }}
             >
               Become a member
@@ -109,9 +135,16 @@ export default function Navbar() {
             cursor: 'pointer',
             color: '#fff',
             padding: 4,
+            transition: 'all 0.3s ease',
           }}
           className="mobile-menu-btn"
           aria-label="Toggle menu"
+          onMouseEnter={(e) => {
+            e.currentTarget.style.opacity = '0.7'
+          }}
+          onMouseLeave={(e) => {
+            e.currentTarget.style.opacity = '1'
+          }}
         >
           <svg width="24" height="24" fill="none" stroke="currentColor" strokeWidth="2">
             {menuOpen ? (
@@ -139,14 +172,21 @@ export default function Navbar() {
             display: 'flex',
             flexDirection: 'column',
             gap: '1rem',
+            animation: 'slideInUp 0.3s ease-out forwards',
           }}
           className="mobile-nav"
         >
-          {navLinks.map((link) => (
+          {navLinks.map((link, idx) => (
             <Link
               key={link.href}
               href={link.href}
-              style={{ color: 'rgba(255,255,255,0.85)', fontSize: 15, textDecoration: 'none' }}
+              style={{ 
+                color: 'rgba(255,255,255,0.85)', 
+                fontSize: 15, 
+                textDecoration: 'none',
+                animation: `slideInLeft 0.4s ease-out ${0.05 * idx}s forwards`,
+                opacity: 0,
+              }}
               onClick={() => setMenuOpen(false)}
             >
               {link.label}
@@ -157,13 +197,20 @@ export default function Navbar() {
               style={{
                 background: 'var(--gold-500)',
                 color: '#1F3A22',
-                fontWeight: 500,
+                fontWeight: 600,
                 padding: '10px 0',
                 borderRadius: 7,
                 border: 'none',
                 cursor: 'pointer',
                 width: '100%',
                 fontSize: 14,
+                transition: 'all 0.3s ease',
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.transform = 'scale(0.98)'
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.transform = 'scale(1)'
               }}
             >
               Become a member
