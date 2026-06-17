@@ -1,3 +1,5 @@
+'use client'
+
 import Link from 'next/link'
 
 export default function Hero() {
@@ -41,7 +43,7 @@ export default function Hero() {
 
           <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap', marginBottom: 18, animation: 'slideInUp 0.8s ease-out 0.5s forwards', opacity: 0 }}>
             <Link href="/membership/register">
-              <a
+              <button
                 style={{
                   background: 'var(--gold-500)',
                   color: '#1F3A22',
@@ -52,6 +54,7 @@ export default function Hero() {
                   transition: 'all 0.3s ease',
                   display: 'inline-block',
                   cursor: 'pointer',
+                  border: 'none',
                 }}
                 onMouseEnter={(e) => {
                   e.currentTarget.style.transform = 'translateY(-2px)';
@@ -64,11 +67,11 @@ export default function Hero() {
                 aria-label="Become a member"
               >
                 Become a member
-              </a>
+              </button>
             </Link>
 
             <Link href="/agriculture">
-              <a
+              <button
                 style={{
                   background: 'transparent',
                   color: '#fff',
@@ -92,14 +95,14 @@ export default function Hero() {
                 aria-label="Explore marketplace"
               >
                 Explore marketplace
-              </a>
+              </button>
             </Link>
           </div>
 
           {/* Quick feature links */}
           <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap', animation: 'fadeIn 0.8s ease-out 0.6s forwards', opacity: 0 }}>
             <Link href="/estate-planning">
-              <a style={{ background: '#fff', color: 'var(--green-700)', padding: '10px 14px', borderRadius: 8, textDecoration: 'none', fontWeight: 600, transition: 'all 0.3s ease', display: 'inline-block', cursor: 'pointer' }}
+              <button style={{ background: '#fff', color: 'var(--green-700)', padding: '10px 14px', borderRadius: 8, border: 'none', fontWeight: 600, transition: 'all 0.3s ease', display: 'inline-block', cursor: 'pointer' }}
                 onMouseEnter={(e) => {
                   e.currentTarget.style.transform = 'scale(1.05)';
                   e.currentTarget.style.boxShadow = '0 4px 12px rgba(0,0,0,0.15)';
@@ -110,10 +113,10 @@ export default function Hero() {
                 }}
               >
                 Estate planning
-              </a>
+              </button>
             </Link>
             <Link href="/talentlink">
-              <a style={{ background: '#fff', color: 'var(--green-700)', padding: '10px 14px', borderRadius: 8, textDecoration: 'none', fontWeight: 600, transition: 'all 0.3s ease', display: 'inline-block', cursor: 'pointer' }}
+              <button style={{ background: '#fff', color: 'var(--green-700)', padding: '10px 14px', borderRadius: 8, border: 'none', fontWeight: 600, transition: 'all 0.3s ease', display: 'inline-block', cursor: 'pointer' }}
                 onMouseEnter={(e) => {
                   e.currentTarget.style.transform = 'scale(1.05)';
                   e.currentTarget.style.boxShadow = '0 4px 12px rgba(0,0,0,0.15)';
@@ -124,10 +127,10 @@ export default function Hero() {
                 }}
               >
                 Hire talent
-              </a>
+              </button>
             </Link>
             <Link href="/enterprise">
-              <a style={{ background: '#fff', color: 'var(--green-700)', padding: '10px 14px', borderRadius: 8, textDecoration: 'none', fontWeight: 600, transition: 'all 0.3s ease', display: 'inline-block', cursor: 'pointer' }}
+              <button style={{ background: '#fff', color: 'var(--green-700)', padding: '10px 14px', borderRadius: 8, border: 'none', fontWeight: 600, transition: 'all 0.3s ease', display: 'inline-block', cursor: 'pointer' }}
                 onMouseEnter={(e) => {
                   e.currentTarget.style.transform = 'scale(1.05)';
                   e.currentTarget.style.boxShadow = '0 4px 12px rgba(0,0,0,0.15)';
@@ -138,7 +141,7 @@ export default function Hero() {
                 }}
               >
                 Find investors
-              </a>
+              </button>
             </Link>
           </div>
         </div>
