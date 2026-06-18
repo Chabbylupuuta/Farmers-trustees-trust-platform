@@ -9,7 +9,7 @@ export const metadata = {
 export default function AboutPage() {
   return (
     <>
-      <style jsx>{`
+      <style>{`
         @keyframes float {
           0% { transform: translateY(0px) scale(1); }
           50% { transform: translateY(-8px) scale(1.02); }

@@ -229,3 +229,32 @@ body {
 /* gentle hover micro-interactions */
 .lift-on-hover { transition: transform 220ms var(--anim-ease), box-shadow 220ms var(--anim-ease); }
 .lift-on-hover:hover { transform: translateY(-6px); box-shadow: 0 12px 30px rgba(0,0,0,0.12); }
+
+/* ===== PAGE FADE IN ANIMATIONS ===== */
+@keyframes pageFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Page-level fade-in */
+main#main-content {
+  animation: pageFadeIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Optional: subtle stagger effect for direct child sections */
+main > * {
+  animation: pageFadeIn 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  opacity: 0;
+}
+
+main > *:nth-child(1) { animation-delay: 0.05s; }
+main > *:nth-child(2) { animation-delay: 0.15s; }
+main > *:nth-child(3) { animation-delay: 0.25s; }
+main > *:nth-child(4) { animation-delay: 0.35s; }
+main > *:nth-child(5) { animation-delay: 0.45s; }
