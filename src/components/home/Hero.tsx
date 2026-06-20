@@ -42,7 +42,7 @@ export default function Hero() {
         {/* Content */}
         <div className={`reveal ${visible ? 'show' : ''} delay-2`} style={{ flex: '1 1 420px', color: '#fff', minWidth: 300 }}>
           <div className={`reveal ${visible ? 'show' : ''} delay-1`} style={{ display: 'inline-block', background: 'rgba(201,162,39,0.12)', color: 'var(--gold-500)', borderRadius: 20, padding: '6px 14px', fontSize: 12, fontWeight: 600, marginBottom: 16 }}>
-            Serving Zambia's farming communities
+            Serving Zambia&apos;s farming communities
           </div>
 
           <h1 className={`reveal ${visible ? 'show' : ''} delay-2`} style={{ fontSize: 'clamp(1.8rem, 4.5vw, 2.6rem)', lineHeight: 1.08, margin: '0 0 1rem 0' }}>

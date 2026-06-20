@@ -35,16 +35,34 @@ export default function HomePage() {
         Skip to main content
       </a>
 
-      {/* Page wrapper with subtle background & animation */}
+      {/* Page wrapper with fresh blended background */}
       <div
         style={{
           position: 'relative',
-          background: 'radial-gradient(ellipse at 20% 50%, rgba(24,92,59,0.03) 0%, transparent 70%), radial-gradient(ellipse at 80% 20%, rgba(201,162,39,0.04) 0%, transparent 60%), #ffffff',
           minHeight: '100vh',
           display: 'flex',
           flexDirection: 'column',
+          overflow: 'hidden',
+          background:
+            'radial-gradient(1200px 600px at 15% 0%, rgba(31,92,59,0.16) 0%, rgba(31,92,59,0) 55%), radial-gradient(900px 520px at 85% 20%, rgba(201,162,39,0.18) 0%, rgba(201,162,39,0) 55%), linear-gradient(180deg, #F7FAF8 0%, #FFFFFF 50%, #FBFCFB 100%)',
         }}
       >
+        {/* Decorative grid overlay */}
+        <div
+          aria-hidden
+          style={{
+            position: 'absolute',
+            inset: 0,
+            pointerEvents: 'none',
+            backgroundImage:
+              'linear-gradient(to right, rgba(31,92,59,0.06) 1px, transparent 1px), linear-gradient(to bottom, rgba(31,92,59,0.06) 1px, transparent 1px)',
+            backgroundSize: '56px 56px',
+            maskImage:
+              'radial-gradient(800px 380px at 50% 0%, rgba(0,0,0,1) 20%, rgba(0,0,0,0) 72%)',
+            opacity: 0.55,
+          }}
+        />
+
         <Navbar />
 
         <main
@@ -54,13 +72,43 @@ export default function HomePage() {
             animation: 'pageFadeIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards',
             opacity: 0,
             transform: 'translateY(12px)',
+            position: 'relative',
+            zIndex: 1,
           }}
         >
+          <div
+            aria-hidden
+            style={{
+              position: 'absolute',
+              inset: -200,
+              background:
+                'radial-gradient(circle at 30% 10%, rgba(201,162,39,0.25) 0%, rgba(201,162,39,0) 50%), radial-gradient(circle at 80% 20%, rgba(31,92,59,0.28) 0%, rgba(31,92,59,0) 48%)',
+              filter: 'blur(20px)',
+              opacity: 0.9,
+              pointerEvents: 'none',
+              zIndex: -1,
+            }}
+          />
           <Hero />
-          <StatsBar />
-          <Pillars />
-          <Membership />
-          <CTASection />
+
+          {/* Content sections */}
+          <div
+            style={{
+              maxWidth: 1200,
+              margin: '0 auto',
+              padding: '0 1.5rem 0',
+            }}
+          >
+            <StatsBar />
+            <div style={{ height: 28 }} />
+            <Pillars />
+            <div style={{ height: 28 }} />
+            <Membership />
+          </div>
+
+          <div style={{ marginTop: 28 }}>
+            <CTASection />
+          </div>
         </main>
 
         <Footer />

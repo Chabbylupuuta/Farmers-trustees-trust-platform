@@ -13,6 +13,8 @@ const navLinks = [
   { label: 'Invest', href: '/enterprise' },
   { label: 'Events', href: '/events' },
   { label: 'Resources', href: '/resources' },
+  { label: 'Privacy Policy', href: '/privacy' },
+  { label: 'Terms of Service', href: '/terms' },
 ]
 
 export default function Navbar() {
