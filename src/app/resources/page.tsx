@@ -118,3 +118,80 @@ export default function ResourcesPage() {
                 display: 'inline-flex',
                 alignItems: 'center',
                 gap: 8,
+                padding: '12px 22px',
+                borderRadius: 12,
+                background: 'rgba(31,92,59,0.06)',
+                border: '1px solid rgba(31,92,59,0.10)',
+                color: 'var(--green-700)',
+                textDecoration: 'none',
+                fontWeight: 700,
+                fontSize: '0.95rem',
+              }}
+            >
+              ← Back to home
+            </Link>
+          </div>
+        </section>
+      </main>
+
+      <Footer />
+    </>
+  )
+}
+
+function ResourceCard({
+  title,
+  description,
+  meta,
+}: {
+  title: string
+  description: string
+  meta: string
+}) {
+  return (
+    <article
+      style={{
+        padding: '1.6rem 1.5rem',
+        borderRadius: 22,
+        background: 'rgba(255,255,255,0.78)',
+        border: '1px solid rgba(31,92,59,0.08)',
+        boxShadow: '0 10px 30px rgba(24,92,59,0.04)',
+      }}
+    >
+      <div
+        style={{
+          display: 'inline-flex',
+          alignItems: 'center',
+          gap: 8,
+          padding: '5px 12px',
+          borderRadius: 9999,
+          background: 'var(--green-50)',
+          border: '1px solid rgba(31,92,59,0.06)',
+          color: 'var(--green-700)',
+          fontSize: 12,
+          fontWeight: 800,
+          marginBottom: 12,
+        }}
+      >
+        {meta}
+      </div>
+
+      <h2
+        style={{
+          margin: '0 0 8px 0',
+          fontSize: 18,
+          color: 'var(--green-900)',
+          fontWeight: 800,
+          letterSpacing: '-0.01em',
+        }}
+      >
+        {title}
+      </h2>
+
+      <p style={{ margin: 0, color: 'var(--text-secondary)', lineHeight: 1.8 }}>
+        {description}
+      </p>
+    </article>
+  )
+}
+
