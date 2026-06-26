@@ -1,11 +1,13 @@
 # TODO
 
-- [x] Update `src/app/globals.css` with shared responsive page classes (page shell, card, typography, CTA rows).
-
-- [x] Refactor `src/app/estate-planning/page.tsx` to use those classes + improve mobile CTA stacking.
-
-- [x] Refactor `src/app/talentlink/page.tsx` to use those classes + improve mobile CTA stacking.
-- [x] Refactor `src/app/events/page.tsx` to use those classes + improve mobile card/grid spacing.
-- [ ] Run `npm run lint` and `npm run build`.
-- [ ] Manual mobile viewport check (e.g., 375px/390px).
+- [ ] Add PostgreSQL persistence for student membership forms (register/login/check)
+  - [ ] Add DB dependencies (pg, bcryptjs)
+  - [ ] Add env vars and DB connection utility
+  - [ ] Create migration/schema for membership accounts
+  - [ ] Replace src/app/api/membership/_store.ts file-based store with Postgres implementation
+  - [ ] Update register route to hash passwords with bcrypt
+  - [ ] Update login route to verify password hashes
+  - [ ] Update membership check route to query DB
+  - [ ] Add basic error handling for DB failures
+  - [ ] Run lint/build
 

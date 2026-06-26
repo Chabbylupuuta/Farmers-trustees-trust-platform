@@ -9,16 +9,38 @@ export default function ContactForm() {
     e.preventDefault()
     setSubmitting(true)
 
-    // This demo just simulates success.
-    // Replace with a real API call if needed.
     try {
-      await new Promise((r) => setTimeout(r, 300))
+      const form = e.currentTarget
+      const formData = new FormData(form)
+
+      const payload = {
+        name: String(formData.get('name') ?? ''),
+        email: String(formData.get('email') ?? ''),
+        phone: String(formData.get('phone') ?? ''),
+        location: String(formData.get('location') ?? ''),
+        message: String(formData.get('message') ?? ''),
+      }
+
+      const res = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
+      })
+
+      if (!res.ok) {
+        const data = await res.json().catch(() => null)
+        throw new Error(data?.error ?? 'Failed to send message')
+      }
+
       alert("Thank you! We'll be in touch soon.")
-      e.currentTarget.reset()
+      form.reset()
+    } catch (err) {
+      alert(err instanceof Error ? err.message : 'Failed to send message')
     } finally {
       setSubmitting(false)
     }
   }
+
 
   return (
     <form
