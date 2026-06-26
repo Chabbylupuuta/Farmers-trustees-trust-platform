@@ -7,14 +7,14 @@
   "/membership/login/page": "app/membership/login/page.js",
   "/membership/register/page": "app/membership/register/page.js",
   "/contact/page": "app/contact/page.js",
-  "/about/page": "app/about/page.js",
   "/agriculture/page": "app/agriculture/page.js",
+  "/about/page": "app/about/page.js",
   "/estate-planning/page": "app/estate-planning/page.js",
-  "/page": "app/page.js",
+  "/enterprise/page": "app/enterprise/page.js",
+  "/events/page": "app/events/page.js",
+  "/privacy/page": "app/privacy/page.js",
   "/resources/page": "app/resources/page.js",
   "/talentlink/page": "app/talentlink/page.js",
-  "/privacy/page": "app/privacy/page.js",
-  "/events/page": "app/events/page.js",
   "/terms/page": "app/terms/page.js",
-  "/enterprise/page": "app/enterprise/page.js"
+  "/page": "app/page.js"
 }

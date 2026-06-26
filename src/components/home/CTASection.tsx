@@ -38,7 +38,24 @@ export default function CTASection() {
         </p>
 
         <div style={{ display: 'flex', gap: 12, justifyContent: 'center', flexWrap: 'wrap' }}>
-          <Link href="/membership/register">
+          <Link href="/membership/login?category=student">
+            <button
+              style={{
+                background: 'transparent',
+                color: 'rgba(255,255,255,0.85)',
+                fontSize: 15,
+                fontWeight: 600,
+                padding: '13px 28px',
+                borderRadius: 8,
+                border: '1px solid rgba(255,255,255,0.25)',
+                cursor: 'pointer',
+              }}
+            >
+              Log in
+            </button>
+          </Link>
+
+          <Link href="/membership/register?category=student">
             <button
               style={{
                 background: 'var(--gold-500)',

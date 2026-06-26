@@ -107,7 +107,36 @@ export default function Navbar() {
             )
           })}
 
-          <Link href="/membership/register">
+          <Link href="/membership/login?category=student" style={{ display: 'inline-flex' }}>
+            <button
+              style={{
+                background: 'transparent',
+                color: 'rgba(255,255,255,0.92)',
+                fontSize: 13,
+                fontWeight: 800,
+                padding: '8px 14px',
+                borderRadius: 10,
+                border: '1px solid rgba(255,255,255,0.25)',
+                cursor: 'pointer',
+                whiteSpace: 'nowrap',
+                transition: 'transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease',
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.transform = 'translateY(-2px)'
+                e.currentTarget.style.boxShadow = '0 6px 16px rgba(0,0,0,0.18)'
+                e.currentTarget.style.borderColor = 'rgba(201,162,39,0.7)'
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.transform = 'translateY(0)'
+                e.currentTarget.style.boxShadow = 'none'
+                e.currentTarget.style.borderColor = 'rgba(255,255,255,0.25)'
+              }}
+            >
+              Log in
+            </button>
+          </Link>
+
+          <Link href="/membership/register?category=student">
             <button
               style={{
                 background: 'var(--gold-500)',
@@ -208,7 +237,34 @@ export default function Navbar() {
             )
           })}
 
-          <Link href="/membership/register" onClick={() => setMenuOpen(false)}>
+          <Link href="/membership/login?category=student" onClick={() => setMenuOpen(false)}>
+            <button
+              style={{
+                background: 'transparent',
+                color: 'rgba(255,255,255,0.92)',
+                fontWeight: 700,
+                padding: '10px 0',
+                borderRadius: 7,
+                border: '1px solid rgba(255,255,255,0.25)',
+                cursor: 'pointer',
+                width: '100%',
+                fontSize: 14,
+                transition: 'all 0.3s ease, border-color 0.2s ease',
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.transform = 'scale(0.98)'
+                e.currentTarget.style.borderColor = 'rgba(201,162,39,0.7)'
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.transform = 'scale(1)'
+                e.currentTarget.style.borderColor = 'rgba(255,255,255,0.25)'
+              }}
+            >
+              Log in
+            </button>
+          </Link>
+
+          <Link href="/membership/register?category=student" onClick={() => setMenuOpen(false)}>
             <button
               style={{
                 background: 'var(--gold-500)',
