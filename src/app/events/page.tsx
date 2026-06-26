@@ -11,58 +11,34 @@ export const metadata: Metadata = {
 export default function EventsPage() {
   return (
     <>
-      <main
-        style={{
-          padding: '4rem 1.5rem',
-          maxWidth: 1000,
-          margin: '0 auto',
-        }}
-      >
+      <main className="page-shell">
         <section
+          className="page-card"
           style={{
-            padding: '2.5rem 2.2rem',
-            borderRadius: 28,
             background:
               'linear-gradient(145deg, rgba(24,92,59,0.07) 0%, rgba(255,255,255,0.98) 100%)',
             border: '1px solid rgba(31,92,59,0.10)',
             boxShadow: '0 10px 40px rgba(24,92,59,0.06)',
           }}
         >
-          <div
-            style={{
-              display: 'inline-flex',
-              alignItems: 'center',
-              gap: 8,
-              padding: '6px 18px 6px 14px',
-              background: 'var(--green-50)',
-              color: 'var(--green-700)',
-              borderRadius: 9999,
-              fontSize: 13,
-              fontWeight: 700,
-              letterSpacing: '0.3px',
-              marginBottom: 18,
-              border: '1px solid rgba(31,92,59,0.06)',
-            }}
-          >
+          <div className="page-pill">
             <span style={{ fontSize: 16 }}>📅</span> Events
           </div>
 
           <h1
+            className="page-title"
             style={{
               fontSize: 'clamp(2.0rem, 4vw, 2.6rem)',
               lineHeight: 1.1,
               margin: '0 0 0.8rem 0',
-              color: 'var(--green-900)',
-              fontWeight: 800,
-              letterSpacing: '-0.02em',
             }}
           >
             Community programs & farmer-focused activities
           </h1>
 
           <p
+            className="page-lead"
             style={{
-              color: 'var(--text-secondary)',
               fontSize: 16,
               lineHeight: 1.8,
               marginBottom: 26,
@@ -74,13 +50,7 @@ export default function EventsPage() {
             dates.
           </p>
 
-          <div
-            style={{
-              display: 'grid',
-              gridTemplateColumns: 'repeat(auto-fit, minmax(270px, 1fr))',
-              gap: 18,
-            }}
-          >
+          <div className="page-grid">
             <EventCard
               title="Farm Business Training"
               date="TBA"
@@ -101,15 +71,7 @@ export default function EventsPage() {
             />
           </div>
 
-          <div
-            style={{
-              marginTop: 26,
-              display: 'flex',
-              justifyContent: 'center',
-              gap: 12,
-              flexWrap: 'wrap',
-            }}
-          >
+          <div className="page-back-row">
             <Link
               href="/"
               style={{

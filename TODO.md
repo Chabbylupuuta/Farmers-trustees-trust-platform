@@ -1,6 +1,11 @@
-- [x] Update plan: decide which top links stay in desktop navbar.
-- [x] Edit src/components/home/Navbar.tsx: simplify desktop layout (fewer links, less styling density, uniform active/inactive styles).
-- [x] Edit src/app/page.tsx: slightly reduce visual competition with navbar (background overlay intensity/spacing).
-- [x] Run `npm run lint` and `npm run build`.
+# TODO
 
+- [x] Update `src/app/globals.css` with shared responsive page classes (page shell, card, typography, CTA rows).
+
+- [x] Refactor `src/app/estate-planning/page.tsx` to use those classes + improve mobile CTA stacking.
+
+- [x] Refactor `src/app/talentlink/page.tsx` to use those classes + improve mobile CTA stacking.
+- [x] Refactor `src/app/events/page.tsx` to use those classes + improve mobile card/grid spacing.
+- [ ] Run `npm run lint` and `npm run build`.
+- [ ] Manual mobile viewport check (e.g., 375px/390px).
 

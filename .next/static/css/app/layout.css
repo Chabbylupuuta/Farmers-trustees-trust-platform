@@ -846,7 +846,123 @@ main > *:nth-child(2) { animation-delay: 0.15s; }
 main > *:nth-child(3) { animation-delay: 0.25s; }
 main > *:nth-child(4) { animation-delay: 0.35s; }
 main > *:nth-child(5) { animation-delay: 0.45s; }
+
+/* ===== Shared responsive page layout helpers ===== */
+.page-shell {
+  padding: 4rem 1.5rem;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.page-card {
+  padding: 2.5rem 2.2rem;
+  border-radius: 28px;
+  border: 1px solid rgba(31,92,59,0.12);
+  box-shadow: 0 10px 40px rgba(24,92,59,0.06);
+}
+
+.page-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 18px 6px 14px;
+  background: var(--green-50);
+  color: var(--green-700);
+  border-radius: 9999px;
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: 0.3px;
+  margin-bottom: 18px;
+  border: 1px solid rgba(31,92,59,0.08);
+}
+
+.page-title {
+  font-weight: 900;
+  letter-spacing: -0.02em;
+  color: var(--green-900);
+}
+
+.page-lead {
+  color: var(--text-secondary);
+  line-height: 1.8;
+}
+
+.page-grid {
+  display: grid;
+  gap: 18px;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+}
+
+.page-cta-row {
+  margin-top: 26px;
+  padding: 1.2rem 1.2rem;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.72);
+  border: 1px solid rgba(31,92,59,0.09);
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.page-cta-row a {
+  white-space: nowrap;
+}
+
+.page-back-row {
+  margin-top: 26px;
+  display: flex;
+  justify-content: center;
+}
+
+@media (max-width: 768px) {
+  .page-shell {
+    padding: 2.5rem 1rem;
+  }
+
+  .page-card {
+    padding: 2rem 1.25rem;
+    border-radius: 22px;
+  }
+
+  .page-grid {
+    gap: 14px;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  }
+
+  .page-cta-row {
+    padding: 1rem 1rem;
+    gap: 12px;
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .page-cta-row a {
+    width: 100%;
+  }
+
+  .page-back-row {
+    margin-top: 18px;
+  }
+}
+
+@media (max-width: 520px) {
+  .page-shell {
+    padding: 2rem 0.9rem;
+  }
+
+  .page-card {
+    padding: 1.75rem 1.05rem;
+  }
+
+  .page-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
 .hover\:opacity-90:hover {
   opacity: 0.9;
 }
+
 
