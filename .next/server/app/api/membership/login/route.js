@@ -1,0 +1,15 @@
+"use strict";(()=>{var e={};e.id=604,e.ids=[604],e.modules={399:e=>{e.exports=require("next/dist/compiled/next-server/app-page.runtime.prod.js")},517:e=>{e.exports=require("next/dist/compiled/next-server/app-route.runtime.prod.js")},6113:e=>{e.exports=require("crypto")},3666:(e,r,a)=>{a.r(r),a.d(r,{originalPathname:()=>w,patchFetch:()=>g,requestAsyncStorage:()=>l,routeModule:()=>p,serverHooks:()=>h,staticGenerationAsyncStorage:()=>d});var t={};a.r(t),a.d(t,{POST:()=>c});var s=a(9303),i=a(8716),n=a(670),o=a(7070),m=a(8691),u=a(3287);async function c(e){let r=await e.formData(),a=String(r.get("category")??"").trim().toLowerCase()||"student",t=String(r.get("email")??"").trim(),s=String(r.get("password")??"").trim();if(!t||!s)return o.NextResponse.json({ok:!1,error:"Missing credentials"},{status:400});let i=await (0,u.Rt)(t),n=!!i&&await m.ZP.compare(s,i.passwordHash);if(!i||!n){let r=new URL("/membership/login",e.url);return r.searchParams.set("category",a),r.searchParams.set("email",t),r.searchParams.set("error","invalid"),o.NextResponse.redirect(r)}let c=new URL("/",e.url);return c.searchParams.set("login","success"),c.searchParams.set("category",i.category),c.searchParams.set("email",i.email),o.NextResponse.redirect(c)}let p=new s.AppRouteRouteModule({definition:{kind:i.x.APP_ROUTE,page:"/api/membership/login/route",pathname:"/api/membership/login",filename:"route",bundlePath:"app/api/membership/login/route"},resolvedPagePath:"/workspaces/Farmers-trustees-trust-platform/src/app/api/membership/login/route.ts",nextConfigOutput:"",userland:t}),{requestAsyncStorage:l,staticGenerationAsyncStorage:d,serverHooks:h}=p,w="/api/membership/login/route";function g(){return(0,n.patchFetch)({serverHooks:h,staticGenerationAsyncStorage:d})}},8784:(e,r,a)=>{a.d(r,{z:()=>n});let t=require("pg"),{Pool:s}=a.n(t)(),i=new s({connectionString:process.env.DATABASE_URL,max:5});async function n(){return i}},3287:(e,r,a)=>{a.d(r,{Rt:()=>o,o1:()=>n,pI:()=>i});var t=a(8691),s=a(8784);async function i(e){let r=await (0,s.z)();return((await r.query("select 1 from membership_accounts where email = $1 limit 1",[e.trim().toLowerCase()])).rowCount??0)>0}async function n(e){let r=await (0,s.z)(),a=await t.ZP.hash(e.password,12),i=e.email.trim().toLowerCase();return(await r.query(`insert into membership_accounts
+     (category, email, name, username, number, address, password_hash)
+     values ($1,$2,$3,$4,$5,$6,$7)
+     returning id, category, email, name, username, number, address, password_hash as passwordHash, created_at as createdAt`,[e.category,i,e.name,e.username,e.number,e.address,a])).rows[0]}async function o(e){let r=await (0,s.z)();return(await r.query(`select id,
+            category,
+            email,
+            name,
+            username,
+            number,
+            address,
+            password_hash as passwordHash,
+            created_at as createdAt
+     from membership_accounts
+     where email = $1
+     limit 1`,[e.trim().toLowerCase()])).rows[0]??null}}};var r=require("../../../../webpack-runtime.js");r.C(e);var a=e=>r(r.s=e),t=r.X(0,[948,972,691],()=>a(3666));module.exports=t})();
