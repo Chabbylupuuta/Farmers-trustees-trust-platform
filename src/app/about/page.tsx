@@ -293,7 +293,7 @@ export default function AboutPage() {
                 fontSize: '1rem',
               }}
             >
-              Strong local agriculture depends on stable family leadership, digital access, and trusted partnerships. We make that support easier to find.
+              Strong farms start with stable families, smart connectivity, and good partners. We help you navigate and find the support that keeps it all together.
             </p>
           </div>
         </section>
