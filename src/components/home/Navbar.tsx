@@ -4,18 +4,25 @@ import { useState } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 
+// Desktop: keep it clean by showing only the most important routes.
+// Secondary routes are moved to the mobile menu.
 const navLinks = [
-  { label: 'About', href: '/about' },
   { label: 'Agriculture', href: '/agriculture' },
+  { label: 'Events', href: '/events' },
+  { label: 'Resources', href: '/resources' },
+  { label: 'About', href: '/about' },
+]
+
+const mobileNavLinks = [
+  ...navLinks,
   { label: 'Contact', href: '/contact' },
   { label: 'Estate Planning', href: '/estate-planning' },
   { label: 'TalentLink', href: '/talentlink' },
   { label: 'Invest', href: '/enterprise' },
-  { label: 'Events', href: '/events' },
-  { label: 'Resources', href: '/resources' },
   { label: 'Privacy Policy', href: '/privacy' },
   { label: 'Terms of Service', href: '/terms' },
 ]
+
 
 export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false)
@@ -75,7 +82,7 @@ export default function Navbar() {
 
         {/* Desktop nav links */}
         <div
-          style={{ display: 'flex', alignItems: 'center', gap: '1.25rem' }}
+          style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}
           className="desktop-nav"
         >
           {navLinks.map((link) => {
@@ -85,21 +92,14 @@ export default function Navbar() {
                 key={link.href}
                 href={link.href}
                 style={{
-                  color: isActive ? 'var(--gold-500)' : 'rgba(255,255,255,0.82)',
+                  color: isActive ? 'var(--gold-500)' : 'rgba(255,255,255,0.86)',
                   fontSize: 13,
                   textDecoration: 'none',
-                  transition: 'all 0.3s ease',
-                  paddingBottom: 2,
-                  borderBottom: isActive ? '2px solid var(--gold-500)' : '2px solid transparent',
-                  fontWeight: isActive ? 700 : 500,
-                }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.color = 'var(--gold-500)'
-                  e.currentTarget.style.borderBottom = '2px solid var(--gold-500)'
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.color = isActive ? 'var(--gold-500)' : 'rgba(255,255,255,0.82)'
-                  e.currentTarget.style.borderBottom = isActive ? '2px solid var(--gold-500)' : '2px solid transparent'
+                  transition: 'color 0.2s ease, opacity 0.2s ease',
+                  padding: '6px 8px',
+                  borderRadius: 8,
+                  fontWeight: isActive ? 800 : 600,
+                  opacity: isActive ? 1 : 0.95,
                 }}
               >
                 {link.label}
@@ -113,14 +113,15 @@ export default function Navbar() {
                 background: 'var(--gold-500)',
                 color: '#1F3A22',
                 fontSize: 13,
-                fontWeight: 600,
+                fontWeight: 700,
                 padding: '8px 18px',
-                borderRadius: 7,
+                borderRadius: 10,
                 border: 'none',
                 cursor: 'pointer',
                 whiteSpace: 'nowrap',
-                transition: 'all 0.3s ease',
+                transition: 'transform 0.2s ease, box-shadow 0.2s ease',
               }}
+
               onMouseEnter={(e) => {
                 e.currentTarget.style.transform = 'translateY(-2px)'
                 e.currentTarget.style.boxShadow = '0 6px 16px rgba(201, 162, 39, 0.4)'
@@ -186,18 +187,19 @@ export default function Navbar() {
           }}
           className="mobile-nav"
         >
-          {navLinks.map((link, idx) => {
+          {mobileNavLinks.map((link, idx) => {
             const isActive = pathname === link.href
             return (
               <Link
                 key={link.href}
                 href={link.href}
-                style={{ 
-                  color: isActive ? 'var(--gold-500)' : 'rgba(255,255,255,0.85)', 
-                  fontSize: 15, 
+                style={{
+                  color: isActive ? 'var(--gold-500)' : 'rgba(255,255,255,0.85)',
+                  fontSize: 15,
                   textDecoration: 'none',
-                  animation: `slideInLeft 0.4s ease-out ${0.05 * idx}s forwards`,
+                  transition: 'color 0.2s ease',
                   opacity: 0,
+                  animation: `slideInLeft 0.35s ease-out ${0.03 * idx}s forwards`,
                 }}
                 onClick={() => setMenuOpen(false)}
               >
@@ -205,6 +207,7 @@ export default function Navbar() {
               </Link>
             )
           })}
+
           <Link href="/membership/register" onClick={() => setMenuOpen(false)}>
             <button
               style={{

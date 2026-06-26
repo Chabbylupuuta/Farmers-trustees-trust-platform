@@ -1,11 +1,6 @@
-- [x] Make home page more attractive (update src/app/page.tsx styling/layout wrappers)
-- [x] Add Privacy Policy page: src/app/privacy/page.tsx
-- [x] Add Terms & Conditions page: src/app/terms/page.tsx
-- [x] Add Privacy/Terms links to Navbar: src/components/home/Navbar.tsx
-- [x] Add Privacy/Terms links to Footer: src/components/home/Footer.tsx
-- [x] Run lint + build to confirm routes compile
-- [x] Add “Back to home” button to Privacy & Terms pages
-
-
+- [x] Update plan: decide which top links stay in desktop navbar.
+- [x] Edit src/components/home/Navbar.tsx: simplify desktop layout (fewer links, less styling density, uniform active/inactive styles).
+- [x] Edit src/app/page.tsx: slightly reduce visual competition with navbar (background overlay intensity/spacing).
+- [x] Run `npm run lint` and `npm run build`.
 
 

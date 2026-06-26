@@ -80,15 +80,16 @@ export default function HomePage() {
             aria-hidden
             style={{
               position: 'absolute',
-              inset: -200,
+              inset: -220,
               background:
-                'radial-gradient(circle at 30% 10%, rgba(201,162,39,0.25) 0%, rgba(201,162,39,0) 50%), radial-gradient(circle at 80% 20%, rgba(31,92,59,0.28) 0%, rgba(31,92,59,0) 48%)',
-              filter: 'blur(20px)',
-              opacity: 0.9,
+                'radial-gradient(circle at 30% 10%, rgba(201,162,39,0.18) 0%, rgba(201,162,39,0) 55%), radial-gradient(circle at 80% 20%, rgba(31,92,59,0.22) 0%, rgba(31,92,59,0) 50%)',
+              filter: 'blur(26px)',
+              opacity: 0.65,
               pointerEvents: 'none',
               zIndex: -1,
             }}
           />
+
           <Hero />
 
           {/* Content sections */}
