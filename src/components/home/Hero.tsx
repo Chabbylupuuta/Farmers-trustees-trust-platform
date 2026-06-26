@@ -26,9 +26,9 @@ export default function Hero() {
     <section
       ref={ref}
       aria-label="Hero"
+      className="home-section"
       style={{
         background: 'linear-gradient(145deg, var(--green-700) 0%, var(--green-800) 100%)',
-        padding: '4rem 1.5rem',
         position: 'relative',
         overflow: 'hidden',
       }}

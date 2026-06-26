@@ -93,13 +93,7 @@ export default function HomePage() {
           <Hero />
 
           {/* Content sections */}
-          <div
-            style={{
-              maxWidth: 1200,
-              margin: '0 auto',
-              padding: '0 1.5rem 0',
-            }}
-          >
+          <div className="home-container">
             <StatsBar />
             <div style={{ height: 28 }} />
             <Pillars />

@@ -74,8 +74,8 @@ export default function Pillars() {
   }, [])
 
   return (
-    <section ref={ref} style={{ background: '#fff', padding: '4rem 1.5rem' }}>
-      <div style={{ maxWidth: 1100, margin: '0 auto' }}>
+    <section ref={ref} className="home-section" style={{ background: '#fff' }}>
+      <div className="home-container">
 
         {/* Section header */}
         <div style={{ textAlign: 'center', marginBottom: '3rem' }}>

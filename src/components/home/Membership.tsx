@@ -47,11 +47,12 @@ const memberships = [
 
 export default function Membership() {
   return (
-    <section style={{ background: 'var(--page-bg)', padding: '4rem 1.5rem' }}>
-      <div style={{ maxWidth: 1100, margin: '0 auto' }}>
+    <section className="home-section" style={{ background: 'var(--page-bg)' }}>
+      <div className="home-container">
 
         {/* Header */}
         <div style={{ textAlign: 'center', marginBottom: '3rem' }}>
+
           <span
             style={{
               display: 'inline-block',

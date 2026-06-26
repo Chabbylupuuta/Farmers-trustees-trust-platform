@@ -259,6 +259,50 @@ main > *:nth-child(3) { animation-delay: 0.25s; }
 main > *:nth-child(4) { animation-delay: 0.35s; }
 main > *:nth-child(5) { animation-delay: 0.45s; }
 
+/* ===== Home-specific shared UI helpers ===== */
+.home-section {
+  padding: 4rem 1.5rem;
+}
+
+@media (max-width: 768px) {
+  .home-section { padding: 2.75rem 1rem; }
+}
+
+@media (max-width: 520px) {
+  .home-section { padding: 2.25rem 0.9rem; }
+}
+
+.home-container {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.home-card {
+  background: #fff;
+  border: 0.5px solid var(--border);
+  border-radius: 14px;
+  padding: 1.75rem;
+  transition: all 0.28s ease;
+  will-change: transform, box-shadow;
+}
+
+.home-card:hover {
+  border-color: var(--green-700);
+  box-shadow: 0 12px 32px rgba(31, 92, 59, 0.12);
+  transform: translateY(-6px);
+}
+
+.home-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 16px;
+  border-radius: 9999px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.3px;
+}
+
 /* ===== Shared responsive page layout helpers ===== */
 .page-shell {
   padding: 4rem 1.5rem;

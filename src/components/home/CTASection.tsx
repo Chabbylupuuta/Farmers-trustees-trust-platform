@@ -8,9 +8,9 @@ export default function CTASection() {
 
   return (
     <section
+      className="home-section"
       style={{
         background: 'var(--green-700)',
-        padding: '4rem 1.5rem',
         textAlign: 'center',
       }}
     >

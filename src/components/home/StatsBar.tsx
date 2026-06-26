@@ -11,13 +11,21 @@ const stats = [
 
 export default function StatsBar() {
   const [isVisible, setIsVisible] = useState(false)
-  const [displayValues, setDisplayValues] = useState<string[]>(
-    stats.map((stat) => {
-      const numeric = parseInt(stat.value, 10)
-      return Number.isFinite(numeric) ? `${numeric === 100 ? 0 : 0}${stat.value.replace(/[0-9]/g, '')}` : stat.value
-    })
-  )
   const ref = useRef<HTMLDivElement>(null)
+
+  const initialDisplayValues = stats.map((stat) => {
+    const numeric = parseFloat(stat.value.replace(/[^0-9.]/g, ''))
+    const hasNumeric = Number.isFinite(numeric) && numeric > -1
+    if (!hasNumeric) return stat.value
+
+    const suffix = stat.value.replace(/[0-9.]/g, '')
+    // start anim from 0%s / 0
+    const start = 0
+    return `${start}${suffix}`
+  })
+
+  const [displayValues, setDisplayValues] = useState<string[]>(initialDisplayValues)
+
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -41,9 +49,10 @@ export default function StatsBar() {
     if (!isVisible) return
 
     const targets = stats.map((stat) => {
-      const numeric = parseInt(stat.value, 10)
-      const suffix = stat.value.replace(/[0-9]/g, '')
-      return Number.isFinite(numeric) ? { numeric, suffix } : null
+      const numeric = parseFloat(stat.value.replace(/[^0-9.]/g, ''))
+      const suffix = stat.value.replace(/[0-9.]/g, '')
+      const isNumeric = Number.isFinite(numeric)
+      return isNumeric ? { numeric, suffix } : null
     })
 
     const duration = 1100
@@ -69,9 +78,10 @@ export default function StatsBar() {
     return () => cancelAnimationFrame(rafId)
   }, [isVisible])
 
+
   return (
     <div ref={ref} className="stats-bar">
-      <div className="stats-grid">
+      <div className="stats-grid" style={{ maxWidth: 1200, margin: '0 auto' }}>
         {stats.map((stat, i) => (
           <div
             key={i}
