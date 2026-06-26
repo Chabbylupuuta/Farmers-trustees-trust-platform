@@ -9,7 +9,7 @@ import Footer from '@/components/home/Footer'
 export const metadata = {
   title: 'Farmers & Trustees Trust | Digital Services for Zambias Farmers',
   description: 'FTT helps rural businesses, farmers, and families connect, secure wealth, plan estates, and grow together with trusted digital tools across Zambia.',
-  keywords: 'farming Zambia, agricultural trust, estate planning, rural business, FTT',
+  keywords: 'farming Zambia, agricultural trust, estate planning, rural business, farmers trust, digital services for farmers, wealth preservation, family wealth, business investment Zambia',
 }
 
 export default function HomePage() {
