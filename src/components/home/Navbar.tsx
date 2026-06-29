@@ -107,8 +107,9 @@ export default function Navbar() {
             )
           })}
 
-          <Link href="/membership/login?category=student" style={{ display: 'inline-flex' }}>
+          <Link href="/membership/login?category=paid" style={{ display: 'inline-flex' }}>
             <button
+
               style={{
                 background: 'transparent',
                 color: 'rgba(255,255,255,0.92)',
@@ -136,8 +137,9 @@ export default function Navbar() {
             </button>
           </Link>
 
-          <Link href="/membership/register?category=student">
+          <Link href="/membership/register?category=paid">
             <button
+
               style={{
                 background: 'var(--gold-500)',
                 color: '#1F3A22',
@@ -237,8 +239,9 @@ export default function Navbar() {
             )
           })}
 
-          <Link href="/membership/login?category=student" onClick={() => setMenuOpen(false)}>
+          <Link href="/membership/login?category=paid" onClick={() => setMenuOpen(false)}>
             <button
+
               style={{
                 background: 'transparent',
                 color: 'rgba(255,255,255,0.92)',
@@ -264,8 +267,9 @@ export default function Navbar() {
             </button>
           </Link>
 
-          <Link href="/membership/register?category=student" onClick={() => setMenuOpen(false)}>
+          <Link href="/membership/register?category=paid" onClick={() => setMenuOpen(false)}>
             <button
+
               style={{
                 background: 'var(--gold-500)',
                 color: '#1F3A22',

@@ -11,7 +11,7 @@ export default function RegisterPage({
 
   // For now we only implement Student join UI, but keep the route compatible
   // with other categories.
-  if (category && category.toLowerCase() !== 'student') {
+  if (category && !['student', 'paid'].includes(category.toLowerCase())) {
     return (
       <main className="page-shell">
         <section className="page-card">
@@ -20,8 +20,9 @@ export default function RegisterPage({
             Join as {String(category)}
           </h1>
           <p className="page-lead">
-            This membership signup flow is currently implemented for <b>Student</b> members.
+            This membership signup flow is currently implemented for <b>Student</b> and <b>Paid</b> members.
           </p>
+
           <div className="page-back-row">
             <Link
               href="/"
@@ -49,16 +50,24 @@ export default function RegisterPage({
 
   // Simple server component form that POSTs to a server action route.
   // We use a client component only where needed.
+  const normalizedCategory = (category ?? 'student').toLowerCase()
+  const pill = normalizedCategory === 'paid' ? '💰 Paid member' : '🎓 Student member'
+  const heading =
+    normalizedCategory === 'paid'
+      ? 'Join as a Paid member'
+      : 'Join as a Student member'
+
   return (
     <main className="page-shell">
       <section className="page-card">
-        <div className="page-pill">🎓 Student member</div>
+        <div className="page-pill">{pill}</div>
         <h1
           className="page-title"
           style={{ fontSize: 'clamp(1.8rem, 3vw, 2.3rem)', margin: '0 0 0.75rem 0' }}
         >
-          Join as a Student member
+          {heading}
         </h1>
+
         <p className="page-lead" style={{ maxWidth: 760 }}>
           Create your account to access TalentLink, internship applications, and training events.
         </p>
@@ -68,7 +77,8 @@ export default function RegisterPage({
           method="post"
           style={{ marginTop: 22, display: 'grid', gap: 14, maxWidth: 680 }}
         >
-          <input type="hidden" name="category" value="student" />
+          <input type="hidden" name="category" value={normalizedCategory} />
+
 
           <div style={{ display: 'grid', gap: 6 }}>
             <label style={{ fontWeight: 800, fontSize: 13 }}>Email</label>
@@ -127,7 +137,8 @@ export default function RegisterPage({
           <p style={{ color: 'var(--text-secondary)', fontSize: 13, marginTop: 2 }}>
             Already have an account?{' '}
             <Link
-              href="/membership/login?category=student"
+              href={`/membership/login?category=${encodeURIComponent(normalizedCategory)}`}
+
               style={{ color: 'var(--green-700)', fontWeight: 900, textDecoration: 'none' }}
             >
               Log in
