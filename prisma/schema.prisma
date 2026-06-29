@@ -1,0 +1,96 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+
+
+enum Role {
+  ADMIN
+  FARMER
+  STUDENT
+  EMPLOYER
+  TRUSTEE
+  INVESTOR
+}
+
+enum UserStatus {
+  PENDING
+  ACTIVE
+  SUSPENDED
+}
+
+model User {
+  id        String     @id @default(cuid())
+  email     String     @unique
+  password  String
+  role      Role
+  status    UserStatus @default(PENDING)
+  createdAt DateTime   @default(now())
+  updatedAt DateTime   @updatedAt
+
+  farmer    Farmer?
+  student   Student?
+  employer  Employer?
+  trustee   Trustee?
+  investor  Investor?
+}
+
+model Farmer {
+  id String @id @default(cuid())
+
+  userId String @unique
+  user   User   @relation(fields: [userId], references: [id])
+
+  farmName  String?
+  province  String?
+  district  String?
+  acreage   Float?
+  crops     String?
+}
+
+model Student {
+  id String @id @default(cuid())
+
+  userId String @unique
+  user   User   @relation(fields: [userId], references: [id])
+
+  institution    String
+  program        String
+  graduationYear Int?
+}
+
+model Employer {
+  id String @id @default(cuid())
+
+  userId String @unique
+  user   User   @relation(fields: [userId], references: [id])
+
+  companyName String
+  industry    String
+}
+
+model Trustee {
+  id String @id @default(cuid())
+
+  userId String @unique
+  user   User   @relation(fields: [userId], references: [id])
+
+  fullName String?
+  organization String?
+}
+
+model Investor {
+  id String @id @default(cuid())
+
+  userId String @unique
+  user   User   @relation(fields: [userId], references: [id])
+
+  fullName String?
+  portfolio String?
+}
+
